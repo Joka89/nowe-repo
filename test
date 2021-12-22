@@ -1,1 +1,46 @@
+using System;
 
+namespace Zadanie2
+{
+    class Program
+    {
+        static int error = 0;
+       
+        static ulong Silnia(ulong n)
+        {
+            checked
+            {
+                try
+                {
+                    ulong ret = 1;
+                    for (uint i = 1; i <= n; i++) ret = ret * i;
+                    return ret;
+                } catch (OverflowException ex)
+                {
+                    error = 1;
+                    return 0;
+                }
+            }
+        }
+        static void Main(string[] args)
+        {
+
+                ulong ret = Silnia(9);
+                if (error == 0) Console.WriteLine("Silnia 9 = " + ret);
+                else Console.WriteLine("Błąd przepełnienia");
+
+                ret = Silnia(20);
+                if (error == 0) Console.WriteLine("Silnia 20 = " + ret);
+                else Console.WriteLine("Błąd przepełnienia");
+
+                ret = Silnia(243);
+                if (error == 0) Console.WriteLine("Silnia 243 = " + ret);
+                else Console.WriteLine("Błąd przepełnienia");
+
+
+            Console.ReadLine();
+        }
+        
+    }
+
+}
